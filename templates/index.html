@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+<title>Home</title>
+{% block content %}
+
+
+<center>
+    <table border="1px" cellpadding="3px" cellspacing="4px">
+        <tr>
+            <th>Sr.No</th>
+            <th>EmployeeName</th>
+            <th>Desigation</th>
+            <th>Department</th>
+        
+        </tr>
+        {% for x in allemp %}
+        <tr>
+            <td>{{forloop.counter}}</td>
+            <td><a href="{% url 'employee_detail' x.id %}">{{ x.name }}</a></td>
+            <td>{{x.designation}}</td>
+            <td>{{x.department.name}}</td>
+        
+        </tr>
+        {% endfor %}
+    </table>
+</center>
+
+{% endblock %}

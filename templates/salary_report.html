@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+<title>Salary Report</title>
+{% block content %}
+<center><h2>Salary Report</h2></center>
+  <form method="post">
+    {% csrf_token %}
+    <label for="start_date">Start Date:</label>
+    <input type="date" id="start_date" name="start_date" required>
+    <label for="end_date">End Date:</label>
+    <input type="date" id="end_date" name="end_date" required>
+    <button type="submit">Generate Report</button>
+  </form>
+
+  {% if start_date and end_date %}
+    <h3>Report for {{ start_date }} to {{ end_date }}</h3>
+    <table id="salary_report_table" class="display">
+      <thead>
+        <tr>
+          <th>Department</th>
+          <th>Total Cost</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for department_cost in department_costs %}
+          <tr>
+            <td>{{ department_cost.name }}</td>
+            <td>{{ department_cost.total_cost }}</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="https://cdn.datatables.net/1.11.7/js/jquery.dataTables.min.js"></script>
+    <script>
+      $(document).ready(function() {
+        $('#salary_report_table').DataTable();
+      });
+    </script>
+  {% endif %}
+{% endblock %}

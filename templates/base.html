@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Your Site{% endblock %}</title>
+    <!-- Add your CSS stylesheets or external links here -->
+    
+</head>
+<body>
+
+<header>
+   <center> <h1>{% block header %}Employee Management System {% endblock %}</h1></center>
+    <!-- Add navigation links or other header content here -->
+</header>
+
+<main>
+    {% block content %}{% endblock %}
+</main>
+<center>
+<footer>
+    <!-- Add footer content here -->
+    &copy; 2024 EMS Pvt Ltd
+</footer>
+</center>
+
+<!-- Add your JavaScript scripts or external links here -->
+
+
+</body>
+</html>

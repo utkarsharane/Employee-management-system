@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h2>Delete Salary Entry</h2>
+  <p>Are you sure you want to delete the salary entry for {{ salary_entry.employee.name }}?</p>
+  <form method="post" action="{% url 'delete_salary' salary_entry.id %}">
+    {% csrf_token %}
+    <button type="submit">Delete</button>
+    <a href="{% url 'employee_detail' employee_id=salary_entry.employee.id %}">Cancel</a>
+  </form>
+{% endblock %}

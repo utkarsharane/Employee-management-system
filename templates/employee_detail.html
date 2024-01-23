@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee Detail</title>
+    <!-- Add your CSS stylesheets or external links here -->
+    
+</head>
+<body>
+
+{% extends 'base.html' %}
+
+{% block content %}
+<center>
+  <h2>Employee Detail: {{ employee.name }}</h2>
+
+  <table border="1px" cellpadding="3px" cellspacing="4px">
+    <tr>
+      <th>Name:</th>
+      <td>{{ employee.name }}</td>
+    </tr>
+    <tr>
+      <th>Email:</th>
+      <td>{{ employee.email }}</td>
+    </tr>
+    <tr>
+      <th>Address:</th>
+      <td>{{ employee.address }}</td>
+    </tr>
+    <tr>
+      <th>Designation:</th>
+      <td>{{ employee.designation }}</td>
+    </tr>
+    <tr>
+      <th>Department:</th>
+      <td>{{ employee.department.name }}</td>
+    </tr>
+    <tr>
+        <th>Reporting Manager:</th>
+        <td>{{ employee.reporting_manager.name|default:"None" }}</td>
+    </tr>
+  </table>
+
+  <h3>Salary Entries</h3>
+  <table border="1px" cellspacing="3px" cellpadding="4px">
+    <thead>
+      <tr>
+        <th>Start Date</th>
+        <th>End Date</th>
+        <th>Salary</th>
+        <th>Add Salary</th>
+        <th>Update Salary</th>
+        <th>Delete Salary</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for salary_entry in employee.employeesalary_set.all %}
+        <tr>
+          <td>{{ salary_entry.date_range.start_date }}</td>
+          <td>{{ salary_entry.date_range.end_date }}</td>
+          <td>{{ salary_entry.salary }}</td>
+          <td><a href="{% url 'add_salary' employee.id %}">Add Salary</a></td>
+        <td><a href="{% url 'update_salary' salary_entry.id %}">Update Salary</a></td>
+        <td><a href="{% url 'delete_salary' salary_entry.id %}">Delete Salary</a></td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</center>
+{% endblock %}
+
+<!-- Add your JavaScript scripts or external links here -->
+
+
+</body>
+</html>
